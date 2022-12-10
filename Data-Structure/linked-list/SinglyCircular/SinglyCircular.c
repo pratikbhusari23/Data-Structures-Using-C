@@ -133,16 +133,25 @@ void deleteLast(){
 	
 	nd * temp=head;
 
+
 	if(head==NULL){
 		printf("Your Linked list is empty !");
 	}
 	else{
+		if(temp->next=head){
+			temp->next=NULL;
+			free(temp);
+			head=NULL;
+		
+		}
+	
 		while(temp->next->next!=head){
 			temp=temp->next;
 		}
 		temp->next->next=NULL;
 		free(temp->next);
 		temp->next=head;
+		
 	}
 }
 
