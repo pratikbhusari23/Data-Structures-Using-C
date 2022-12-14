@@ -83,18 +83,17 @@ int addAtpos(int pos){
 
 	int cnt=CountNode();
 
-	nd * newNode=CreateNode();
-
 	if(head==NULL){
 		printf("Your Linked List is Empty ! ");
 	}
-	else if(pos <1 || pos>cnt){
+	else if(pos <1 || pos>cnt+1){
 		printf("Invalid Position Entered ");
 	}
-	else if(pos==cnt){
+	else if(pos==cnt+1){
 		addAtlast();
 	}
 	else{
+		nd * newNode=CreateNode();
 		nd * temp=head;
 
 		while(pos-2){
@@ -132,7 +131,6 @@ void deleteFirst(){
 void deleteLast(){
 	
 	nd * temp=head;
-
 
 	if(head==NULL){
 		printf("Your Linked list is empty !");
