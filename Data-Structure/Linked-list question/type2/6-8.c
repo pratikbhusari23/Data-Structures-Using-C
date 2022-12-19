@@ -154,8 +154,6 @@ void revData(){
 	}
 }
 
-
-
 void delFirst(){
 
 	if(head==NULL){
@@ -311,7 +309,4 @@ void main(){
 		scanf(" %c",&ch);
 	}
 	while(ch=='y'||ch=='Y');
-
-
 }
-

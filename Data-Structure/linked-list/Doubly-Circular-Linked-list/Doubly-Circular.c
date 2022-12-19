@@ -116,17 +116,25 @@ int addAtPos(int pos){
 
 void deleteFirst(){
 
+    int cnt=count();
+
     if(head==NULL){
 
         printf("Your Linked List is empty ");
     }
-    else {
+    else if(cnt==1){
 
-        nd * temp=head;
-        head->next->prev=head->prev;
-        head->prev->next=head->next;
+        free(head);
+        head=NULL;
+
+    }
+    else {
+        
         head=head->next;
-        free(temp);
+        head->prev=head->prev->prev;
+        free(head->prev->next);
+        head->prev->next=head;
+        
     }
 }
 

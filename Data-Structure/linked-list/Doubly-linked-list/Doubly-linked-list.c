@@ -40,7 +40,6 @@ void addNode(){
 		temp->next=newNode;
 		newNode->prev=temp;
 	}
-
 }
 
 void addAtfirst(){
@@ -56,6 +55,7 @@ void addAtfirst(){
 		head=newNode;
 	}
 }
+
 int count(){
 
 	nd * temp =head;
@@ -67,15 +67,27 @@ int count(){
 	return cnt;
 }
 
+void addAtLast(){
+	addNode();
+}
+
 int addAtPos(int pos){
 	
 	nd * newNode=CreateNode();
+
 	int cnt = count();
 	if(head==NULL){
 		head=newNode;
 	}
-	else if(pos<1 || pos>cnt){
+	else if(pos<1 || pos>cnt+1){
 		printf("Invalid Position Enterd !");
+	}
+	else if(pos==1){
+		addAtfirst();
+	}
+	else if(pos==cnt+1){
+		addAtLast();
+
 	}
 	else {
 		nd * temp=head;
@@ -90,19 +102,20 @@ int addAtPos(int pos){
 		temp->next=newNode;
 
 	}
-
-}
-
-void addAtlast(){
-	addNode();
 }
 
 void deletefirst(){
 	
 	nd * temp=head;
-
+	int cnt=count();
 	if(head==NULL){
 		printf("Your Linked List is Empty : ");
+	}
+	else if(cnt==1){
+
+		free(head);
+		head=NULL;
+
 	}
 	else {
 		temp->next->prev=NULL;
@@ -125,8 +138,46 @@ void deleteLast(){
 		free(temp->next);
 		temp->next=NULL;
 	}
+}
+
+int deleteAtpos(int pos2){
+
+	nd * temp=head;
+	int cnt=count();
+
+	if(head==NULL){
+
+		printf("Your Linked List is Empty !\n");
+		
+	}
+
+	else if(pos2<1 || pos2>cnt){
+
+		printf("Invalid Position1\n");
+	}
+	else if(pos2==1){
+
+		deletefirst();
+	}
+	else if(pos2==cnt){
+		deleteLast();
+	}
+	else{
+
+		nd * temp1=head;
+		while(pos2-2){
+
+			temp=temp->next;
+			pos2--;
+		}
+		temp->next=temp->next->next;
+		free(temp->next->prev);
+		temp->next->prev=temp;
+	}
 
 }
+	
+
 void printll(){
 	
 	nd * temp=head;
@@ -135,12 +186,30 @@ void printll(){
 		printf("Your Linked List is Empty !");
 	}
 	else {
-		while(temp!=NULL){
+		while(temp->next!=NULL){
 			printf("|%d|->",temp->data);
 			temp=temp->next;
 		}
+		printf("|%d|",temp->data);
 	}
 
+}
+
+void intreverse(){
+
+	nd * temp=NULL;
+
+	while(head!=NULL){
+
+		temp=head->prev;
+		head->prev=head->next;
+		head->next=temp;
+		head=head->prev;
+	}
+	if(temp!=NULL){
+
+		head=temp->prev;
+	}
 }
 void main(){
 	
@@ -149,14 +218,16 @@ void main(){
 
 	do {	
 		
-		printf("\t1.AddNode\n");
-		printf("\t2.Add At first\n");
-		printf("\t3.Add At Position\n");
-		printf("\t4.Add At Last\n");
-		printf("\t5.Delete First\n");
-		printf("\t6.Delete At Pos\n");
-		printf("\t7.Delete Last\n");
-		printf("\t8.Print Linked List\n");
+		printf("\t1.Add Mutliple Nodes\n");
+		printf("\t2.Add Node At first\n");
+		printf("\t3.Add Node At Position\n");
+		printf("\t4.Add Node At Last\n");
+		printf("\t5.Delete First Node\n");
+		printf("\t6.Delete a Node At Position\n");
+		printf("\t7.Delete Last Node\n");
+		printf("\t8.Reverse Linked List\n");
+		printf("\t9.Count Nodes\n");
+		printf("\t10.Print Linked List\n");
 
 		printf("\nWhich Function Do you want to do for a Doubly Linked list : ");
 		scanf("%d",&choice);
@@ -179,21 +250,28 @@ void main(){
 				addAtPos(pos1);
 				break;
 			case 4 :
-				addAtlast();
+				addAtLast();
 				break;
 			case 5 :
 				deletefirst();
 				break;
-			case 6 :/*
+			case 6 :
+
 				printf("Which Position do you want to Delete : ");
 				scanf("%d",&pos2);
 				deleteAtpos(pos2);
-				*/
 				break;
+
 			case 7 :
 				deleteLast();
 				break;
 			case 8 :
+				intreverse();
+				break;
+			case 9 :
+				printf("Total Nodes in Linked are %d",count());
+				break;
+			case 10 :
 				printll();
 				break;
 			default :

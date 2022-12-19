@@ -294,25 +294,27 @@ int addDataofNode(){
 	}
 }
 
-int PalindromeNode(){
+void PalindromeNode(){
 	
 	d * temp=head;
 	
-	int sum=0,temp1,rem,cnt=0;
+	int num,rem,cnt=0,original;
 
 	while(temp!=NULL){
-	
-		temp1=temp->data;
+		
+		int sum=0;
+		num=temp->data;
 		cnt++;
-		while(temp->data){
+		original=num;
+		while(num>0){
 
-			rem=temp->data%10;
-			sum=(sum*10)+rem;
-			temp->data=temp->data/10;		
+			int digit=num%10;
+			sum=(sum*10)+digit;
+			num=num/10;	
 
 		}	
-		if(temp1==sum){
-			printf("Palindrome Found at position %d ",cnt);
+		if(original==sum){
+			printf("\nPalindrome Found at position %d ",cnt);
 		}
 		temp=temp->next;
 	
