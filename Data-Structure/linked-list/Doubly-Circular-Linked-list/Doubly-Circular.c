@@ -209,6 +209,25 @@ void checkDoubly(){
         temp=temp->next;
     }
 }
+
+void inPlaceReverse(){
+
+    struct Node *temp1=NULL;
+    struct Node *temp2=head;
+       
+    do{  
+        
+        temp1=temp2->prev;
+        temp2->prev=temp2->next;
+        temp2->next=temp1;
+        temp2=temp2->prev;
+
+    }
+    while(temp2!=head);
+
+    head=temp1->prev;
+
+}
 void main(){
 
 	char ch;
@@ -225,6 +244,8 @@ void main(){
 		printf("7.Delete at Position\n");
 		printf("8.Delete last\n");
 		printf("9.Print Linked List\n");
+        printf("10.Check if Linked List is Doubly\n");
+        printf("11.In-Place Reverse\n");
 
 		int choice;
 		printf("Enter Your Choice : \n");
@@ -269,6 +290,9 @@ void main(){
 				break;
             case 10 :
                 checkDoubly();
+                break;
+            case 11 :
+                inPlaceReverse();
                 break;
 			default :
 				printf("Invalid Input : ");

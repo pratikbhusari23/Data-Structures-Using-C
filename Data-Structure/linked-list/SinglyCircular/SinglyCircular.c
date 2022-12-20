@@ -197,6 +197,23 @@ void printSCLL(){
 	}
 
 }
+
+void inPlaceReverse(){
+	struct Node * temp1=head;
+	struct Node * temp2=NULL;
+	struct Node * temp3=NULL;
+
+	while(temp3!=head){
+
+		temp3=temp1->next;
+		temp1->next=temp2;
+		temp2=temp1;
+		temp1=temp3;
+	}
+	
+	head->next=temp2;
+	head=temp2;
+}
 void main(){
 
 	char ch;
@@ -213,6 +230,7 @@ void main(){
 		printf("7.Delete at Position\n");
 		printf("8.Delete last\n");
 		printf("9.Print Linked List\n");
+		printf("10.In-Place Reverse\n");
 
 		int choice;
 		printf("Enter Your Choice : \n");
@@ -254,6 +272,9 @@ void main(){
 				break;
 			case 9 :
 				printSCLL();
+				break;
+			case 10 :
+				inPlaceReverse();
 				break;
 			default :
 				printf("Invalid Input : ");

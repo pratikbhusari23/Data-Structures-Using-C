@@ -57,13 +57,14 @@ void printll(){
 	nd * temp=head;
 
 	if(head==NULL){
-		printf("Your Linked List is Empty !");
+		printf("Your Linked List is Empty !\n");
 	}
 	else {
-		while(temp!=NULL){
+		while(temp->next!=NULL){
 			printf("|%d|->",temp->data);
 			temp=temp->next;
 		}
+		printf("|%d|\n",temp->data);
 	}
 
 }
@@ -73,17 +74,18 @@ void intreverse(){
 
 	while(head!=NULL){
 
-        temp=head->prev;
+		temp=head->prev;
 		head->prev=head->next;
 		head->next=temp;
 		head=head->prev;
 		
 	}
-	if(head->prev!=NULL){
+	if(temp!=NULL){
 
 		head=temp->prev;
 	}
 }
+
 void main(){
 	
 	int num,choice,pos1,pos2;

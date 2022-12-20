@@ -42,14 +42,14 @@ void printLL(){
 
 		printf("Your Linked List is Empty");
 	}
-	while(temp!=NULL){
+	else{
 		
-		if(temp->next !=NULL){
+		while(temp->next!=NULL){
 			printf("|%d|->",temp->data);
-		}else{
-			printf("|%d|",temp->data);
+			temp=temp->next;
 		}
-		temp= temp->next;
+		printf("|%d|",temp->data);
+
 	}
 }
 int count(){
@@ -206,6 +206,24 @@ int occurence(int num){
 	}
 	return 0;
 }
+
+void inPlaceReverse(){
+
+    Node * temp1=NULL;
+    Node * temp2;
+
+    while(head!=NULL){
+
+        temp2=head->next;
+        head->next=temp1;
+        temp1=head;
+        head=temp2;
+    }
+
+    head=temp1;
+
+}
+
 void main(){
 	
 	char ch;
@@ -222,13 +240,19 @@ void main(){
 		printf("\t8.deleteLast\n");
 		printf("\t9.printLinkedList\n");
 		printf("\t10.Ocurrence\n");
+		printf("\t11.Reverse Linked List\n");
 		int choice;
 		printf("Enter your choice : ");
 		scanf("\t%d",&choice);
 		switch(choice){
 
 			case 1:
-				addNode();
+				printf("How Many Nodes Do you want to add ?\n");
+				scanf("%d",&num);
+				
+				for(int i=0; i<num ; i++){
+					addNode();
+				}
 				break;
 			case 2:
 				printf("Number of Nodes in LL : %d",count());
@@ -265,6 +289,9 @@ void main(){
 				printf("Enter Data You want to search : ");
 				scanf("%d",&num);
 				occurence(num);
+				break;
+			case 11:
+				inPlaceReverse();
 				break;
 			default:
 				printf("You entered wrong choice\n");

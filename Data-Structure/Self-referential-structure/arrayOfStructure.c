@@ -10,7 +10,7 @@ struct movie{
 
 void main(){
 
-	struct movie record[2];
+	struct movie record[3];
 	
 	// 1st movie record 
 	
@@ -32,7 +32,7 @@ void main(){
 
 	for(int i=0 ; i<3 ; i++){
 
-		printf("Record of Movies Watch with friends : %d \n",i+1);
+		printf("\nRecord of %d Movie Watch with friends\n",i+1);
 
 		printf("\nNo of Tickets for Movie %d : %d \n",i+1,record[i].tickets);
 		printf("Name of The Movie : %s \n",record[i].Mname);
