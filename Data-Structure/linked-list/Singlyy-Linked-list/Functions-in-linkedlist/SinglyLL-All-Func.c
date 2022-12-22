@@ -224,10 +224,52 @@ void inPlaceReverse(){
 
 }
 
+int removeNthFromEnd(int n){
+
+    Node * temp1=head;
+    Node * temp2=head;
+
+		int cnt=count();
+
+		if (head == NULL) {
+    		return -1;
+  		}
+
+  		else if (n == cnt) {
+    		head = head->next;
+    		return 0;
+ 	 	}
+
+        else{
+			
+			for(int i=0 ; i<n ; i++){
+
+            temp2=temp2->next;
+
+        }
+
+        while(temp2->next!=NULL){
+
+    	    temp2=temp2->next;
+    	    temp1=temp1->next;
+			
+        }
+		
+        temp2=temp1->next;
+
+        temp1->next=temp1->next->next;
+
+        free(temp2);
+
+		return 0;
+    	}
+}
+
+
 void main(){
 	
 	char ch;
-       	int pos,pos1,num;
+       	int pos,pos1,num,n;
 		do {	
 		printf("Which Operation do you want :\n");
 		printf("\t1.addNode\n");
@@ -241,6 +283,7 @@ void main(){
 		printf("\t9.printLinkedList\n");
 		printf("\t10.Ocurrence\n");
 		printf("\t11.Reverse Linked List\n");
+		printf("\t12.Remove Node From Last\n");
 		int choice;
 		printf("Enter your choice : ");
 		scanf("\t%d",&choice);
@@ -292,6 +335,11 @@ void main(){
 				break;
 			case 11:
 				inPlaceReverse();
+				break;
+			case 12 :
+				printf("Enter nth position to delete from last : ");
+				scanf("%d",&n);
+				removeNthFromEnd(n);
 				break;
 			default:
 				printf("You entered wrong choice\n");
