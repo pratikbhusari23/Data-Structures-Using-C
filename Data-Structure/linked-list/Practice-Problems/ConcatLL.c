@@ -9,6 +9,7 @@ struct Node {
 
 struct Node * head1=NULL;
 struct Node * head2=NULL;
+struct Node * head3=NULL;
 
 struct Node * CreateNode(){
 
@@ -59,17 +60,17 @@ void printSLL(struct Node * head){
     printf("|%d|",temp->data);
 }
 
-struct Node * ConcatLL(struct Node * head , struct Node * head2){
+// struct Node * ConcatLL(struct Node * head , struct Node * head2){
 
-    struct Node * temp=head1;
+//     struct Node * temp=head1;
 
-    while(temp->next!=NULL){
+//     while(temp->next!=NULL){
 
-        temp=temp->next;
-    }
-    temp->next=head2;
-    return head2;
-}
+//         temp=temp->next;
+//     }
+//     temp->next=head2;
+//     return head2;
+// }
 
 void ConcatNLL(int num){
 
@@ -90,6 +91,35 @@ void ConcatNLL(int num){
     }
     temp1->next=temp2;
 }
+
+struct Node * CloneLL(struct Node * head1){
+
+    struct Node * temp=head1;
+
+    while(temp!=NULL){
+
+        struct Node * newNode=(struct Node*)malloc(sizeof(struct Node));
+        newNode->data=temp->data;
+       
+        newNode->next=NULL;
+
+        if(head3==NULL){
+            head3=newNode;
+        }
+        else{
+            struct Node * temp2=head3;
+            while(temp2->next!=NULL){
+                temp2=temp2->next;
+            }
+            temp2->next=newNode;
+        }
+        temp=temp->next;
+    }
+    return head3;
+}
+
+
+
 void main(){
 
     int Nodecount,num;
@@ -114,4 +144,8 @@ void main(){
 
     ConcatNLL(num);
     printSLL(head1);
+
+    CloneLL(head1);
+    printf("\n");
+    printSLL(head3);
 }
