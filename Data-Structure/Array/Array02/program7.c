@@ -2,22 +2,18 @@
 
 #include <stdio.h>
 
-int rotateby90withoutusingextraarray(int arr[][2], int row, int col)
-{
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            if (i < j)
-            {
+int rotateby90withoutusingextraarray(int arr[][2], int row, int col){
+    
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < col; j++){
+            if (i < j){
                 int temp = arr[i][j];
                 arr[i][j] = arr[j][i];
                 arr[j][i] = temp;
             }
         }
     }
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++){
         for(int j=0 ; j<col/2 ; j++){
             int temp=arr[i][j];
             arr[i][j]=arr[i][col-1-j];
@@ -26,8 +22,7 @@ int rotateby90withoutusingextraarray(int arr[][2], int row, int col)
     }
 }
 
-void main()
-{
+void main() {
 
     int arr[2][2] = {{1, 2}, {3,4}};
 
@@ -36,13 +31,19 @@ void main()
 
     rotateby90withoutusingextraarray(arr, row, col);
 
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++){
         printf("[");
-        for (int j = 0; j < col - 1; j++)
-        {
+        for (int j = 0; j < col - 1; j++){
             printf("%d,", arr[i][j]);
         }
         printf("%d]", arr[i][col - 1]);
     }
 }
+
+// 
+1 2
+3 4
+
+3 1
+4 2
+
