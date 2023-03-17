@@ -19,37 +19,22 @@ Column 4 = 4+8+4 = 16
 ============================
 */
 
-#include<stdio.h>
+#include <stdio.h>
 
-int columnsum(int arr[][100],int n,int m,int i,int j,int sum){
-    if(i==n){
+int columnsum(int arr[][4],int i,int j,int size,int sum){
+    if(i==size){
         return sum;
     }
-    if(j==m){
-        return sum;
-    }
-    sum = sum + arr[j][i];
-    return columnsum(arr,n,m,i,j+1,sum);
+    sum+=arr[i][j];
+    return columnsum(arr,i+1,j,size,sum);
 }
 
-void main(){
-
-    int arr[100][100],row,column,i,j,sum=0;
-
-    printf("Enter the size of array: ");
-    scanf("%d %d",&row,&column);
-
-    printf("Enter the elements of array: ");
-    for(i=0;i<row;i++){
-        for(j=0;j<column;j++){
-            scanf("%d",&arr[i][j]);
-        }
+int main(){
+    int arr[][4] = {{1,2,3,4},{5,6,7,8},{9,2,3,4}};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int sum = 0;
+    for(int i=0;i<4;i++){
+        printf("%d ",columnsum(arr,0,i,size,sum));
     }
-
-    for(i=0;i<column;i++){
-        sum = columnsum(arr,row,column,0,i,0);
-        printf("%d ",sum);
-        sum = 0;
-    }
-
+    return 0;
 }
