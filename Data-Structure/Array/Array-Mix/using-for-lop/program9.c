@@ -33,10 +33,10 @@ int main()
     int row = 3;
     int col = 3;
     int sum = 0;
-    int i,j;
-    for(i=0;i<row;i++)
+    
+    for(int i=0;i<row;i++)
     {
-        for(j=0;j<col;j++)
+        for(int j=0;j<col;j++)
         {
             if(i==j)
             {
