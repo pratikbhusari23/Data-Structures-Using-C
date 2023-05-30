@@ -264,6 +264,61 @@ int removeNthFromEnd(int n){
 		return 0;
     	}
 }
+/*
+2->4->3
+5->6->4
+
+output : 8->0->7
+
+linked list
+
+*/
+
+struct Nodes * AddTwoNumbers(struct Nodes * list1 , struct Nodes * list2){
+
+	struct Nodes * temp1=list1;
+	struct Nodes * temp2=list2;
+	struct Nodes * list3=NULL;
+	struct Nodes * temp3=NULL;
+	int carry=0;
+
+	while(temp1!=NULL || temp2!=NULL){
+
+		int sum=0;
+		if(temp1!=NULL){
+			sum+=temp1->data;
+			temp1=temp1->next;
+		}
+		if(temp2!=NULL){
+			sum+=temp2->data;
+			temp2=temp2->next;
+		}
+		sum+=carry;
+		carry=sum/10;
+		sum=sum%10;
+
+		struct Nodes * newNode=(struct Nodes *)malloc(sizeof(struct Nodes));
+		newNode->data=sum;
+		newNode->next=NULL;
+
+		if(list3==NULL){
+			list3=newNode;
+			temp3=newNode;
+		}
+		else{
+			temp3->next=newNode;
+			temp3=temp3->next;
+		}
+	}
+	if(carry>0){
+		struct Nodes * newNode=(struct Nodes *)malloc(sizeof(struct Nodes));
+		newNode->data=carry;
+		newNode->next=NULL;
+		temp3->next=newNode;
+		temp3=temp3->next;
+	}
+	return list3;
+}
 
 
 void main(){
@@ -341,6 +396,9 @@ void main(){
 				scanf("%d",&n);
 				removeNthFromEnd(n);
 				break;
+			case 13 :
+				printf("Add two numbers in Linked List\n");
+				
 			default:
 				printf("You entered wrong choice\n");
 				break;
